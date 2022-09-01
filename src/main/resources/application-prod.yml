@@ -1,0 +1,18 @@
+
+server:
+  port: 7500
+spring:
+  mvc:
+    pathmatch:
+      matching-strategy: ANT_PATH_MATCHER
+  datasource:
+    url: "jdbc:mysql://173.212.252.146:3306/fossildb?useSSL=false&serverTimezone=Africa/Harare&allowPublicKeyRetrieval=true"
+    username: developer
+    password: ch@ng3itDev
+  jpa:
+    properties:
+      hibernate:
+        dialect: org.hibernate.dialect.MySQL5InnoDBDialect
+    hibernate:
+      ddl-auto: update
+    show-sql: true
