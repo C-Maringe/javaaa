@@ -2,6 +2,10 @@ package com.fossil.assetmanagementsystem.projections;
 
 import com.fossil.assetmanagementsystem.enums.DepreciationEnum;
 
+import java.time.Instant;
+import java.time.LocalDate;
+import java.time.LocalDateTime;
+
 public interface AssetView {
     Integer getId();
     String getAssetName();
@@ -14,5 +18,8 @@ public interface AssetView {
     Integer getLocationId();
     String getBarcode();
     Integer getUserId();
-    String getDateOfPurchase();
+    LocalDate getDateOfPurchase();
+    String getCreatedBy();
+    Instant getCreatedDate();
+    Instant getUpdatedDate();
 }

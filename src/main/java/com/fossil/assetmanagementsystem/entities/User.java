@@ -1,5 +1,6 @@
 package com.fossil.assetmanagementsystem.entities;
 
+import com.fasterxml.jackson.annotation.JsonIgnore;
 import lombok.Getter;
 import lombok.RequiredArgsConstructor;
 import lombok.Setter;
@@ -19,6 +20,7 @@ public class User extends BaseEntity implements Serializable {
     @Column(name = "user_name",nullable = false)
     private String userName;
 
+    @JsonIgnore
     @Column(name = "password",nullable = false)
     private String password;
 

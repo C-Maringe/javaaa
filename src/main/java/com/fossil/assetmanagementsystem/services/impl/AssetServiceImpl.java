@@ -14,6 +14,8 @@ import org.springframework.beans.BeanUtils;
 import org.springframework.stereotype.Service;
 
 import javax.persistence.EntityNotFoundException;
+import java.time.LocalDate;
+import java.time.LocalDateTime;
 import java.util.List;
 import java.util.Objects;
 
@@ -30,6 +32,12 @@ public class AssetServiceImpl implements AssetService {
     public List<AssetView> findAllAssets() {
         return assetRepository.findAllAssets();
     }
+
+    @Override
+    public List<AssetView> findByDateOfPurchase(LocalDate dateOfPurchase) {
+        return assetRepository.findByDateOfPurchase(dateOfPurchase);
+    }
+
 
     @Override
     public AssetDto findById(Integer id) {

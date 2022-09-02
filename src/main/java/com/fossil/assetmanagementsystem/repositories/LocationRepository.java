@@ -11,6 +11,7 @@ import java.util.List;
 @Repository
 public interface LocationRepository extends JpaRepository<Location,Integer> {
 
-    @Query("SELECT l.id as id FROM Location l")
+    @Query("SELECT l.id as id,l.createdAt as createdAt,l.createdBy as createdBy," +
+            "l.updatedAt as updatedAt FROM Location l")
     List<LocationView> findAllLocations();
 }

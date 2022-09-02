@@ -9,9 +9,14 @@ import com.fossil.assetmanagementsystem.util.ResponseBuild;
 import com.sun.istack.NotNull;
 import lombok.RequiredArgsConstructor;
 import org.springframework.beans.BeanUtils;
+import org.springframework.format.annotation.DateTimeFormat;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
+
+import java.text.DateFormat;
+import java.time.LocalDate;
+import java.time.LocalDateTime;
 
 
 @RequiredArgsConstructor
@@ -51,6 +56,12 @@ public class AssetController {
         return new ResponseEntity<>(assetDeleteResponseBuild.responseFunction.
                 apply(assetService.deleteById(id)), HttpStatus.OK);
     }
+    @GetMapping("/find-by-date/{dateOfPurchase}")
+    public ResponseEntity<Response> getAssetByDate(@NotNull @DateTimeFormat(pattern = "yyyy-MM-dd") @PathVariable("dateOfPurchase") LocalDate dateOfPurchase){
+        return new ResponseEntity<>(assetViewResponseBuild.listResponseFunction.
+                apply(assetService.findByDateOfPurchase(dateOfPurchase)), HttpStatus.OK);
+    }
+
 
 
 

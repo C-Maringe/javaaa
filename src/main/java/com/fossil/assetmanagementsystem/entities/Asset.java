@@ -1,5 +1,6 @@
 package com.fossil.assetmanagementsystem.entities;
 
+import com.fasterxml.jackson.annotation.JsonFormat;
 import com.fossil.assetmanagementsystem.enums.DepreciationEnum;
 import lombok.Getter;
 import lombok.RequiredArgsConstructor;
@@ -7,6 +8,8 @@ import lombok.Setter;
 
 import javax.persistence.*;
 import java.io.Serializable;
+import java.time.LocalDate;
+import java.time.LocalDateTime;
 
 @RequiredArgsConstructor
 @Getter
@@ -49,8 +52,13 @@ public class Asset extends BaseEntity implements Serializable {
     @Column(name = "user_id",nullable = false)
     private Integer userId;
 
+    @JsonFormat(shape = JsonFormat.Shape.STRING, pattern = "yyyy-MM-dd")
     @Column(name = "date_of_purchase",nullable = false)
-    private String dateOfPurchase;
+    private LocalDate dateOfPurchase;
+   /* @Basic
+    @JsonFormat(pattern="yyyy-MM-dd",timezone = " GMT+8")
+    @Column(name = "date_of_purchase",nullable = false)
+    private LocalDateTime dateOfPurchase;*/
 
 
 

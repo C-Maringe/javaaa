@@ -8,6 +8,7 @@ import javax.persistence.criteria.CriteriaBuilder;
 @Data
 public class AssetMovementDto {
     private Integer id;
+    private String createdBy;
     private Integer assetId;
     private Integer userId;
     private Integer locationId;

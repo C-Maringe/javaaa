@@ -1,6 +1,7 @@
 package com.fossil.assetmanagementsystem.controllers;
 
 import com.fossil.assetmanagementsystem.dtos.AssetMovementDto;
+import com.fossil.assetmanagementsystem.enums.StatusEnum;
 import com.fossil.assetmanagementsystem.projections.AssetMovementView;
 import com.fossil.assetmanagementsystem.projections.AssetView;
 import com.fossil.assetmanagementsystem.services.AssetMovementService;
@@ -48,6 +49,11 @@ public class AssetMovementController {
     public ResponseEntity<Response> deleteAssetMovement(@PathVariable("id") Integer id){
         return new ResponseEntity<>(assetDeleteResponseBuild.responseFunction.
                 apply(assetMovementService.deleteById(id)), HttpStatus.OK);
+    }
+    @GetMapping("/find-by-asset/{status}")
+    public ResponseEntity<Response> findByAsset(@PathVariable("status") StatusEnum status){
+        return new ResponseEntity<>(assetMovementViewResponseBuild.listResponseFunction.
+                apply(assetMovementService.findAllByStatus(status)), HttpStatus.OK);
     }
 
 }

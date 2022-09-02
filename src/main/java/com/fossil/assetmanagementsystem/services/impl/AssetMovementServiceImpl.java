@@ -4,6 +4,7 @@ package com.fossil.assetmanagementsystem.services.impl;
 import com.fossil.assetmanagementsystem.dtos.AssetMovementDto;
 
 import com.fossil.assetmanagementsystem.entities.AssetMovement;
+import com.fossil.assetmanagementsystem.enums.StatusEnum;
 import com.fossil.assetmanagementsystem.exceptions.InvalidParameterException;
 import com.fossil.assetmanagementsystem.projections.AssetMovementView;
 import com.fossil.assetmanagementsystem.repositories.AssetMovementRepository;
@@ -37,6 +38,11 @@ public class AssetMovementServiceImpl implements AssetMovementService {
     @Override
     public List<AssetMovementView> findAllAssetMovements() {
       return  assetMovementRepository.findAllAssetMovements();
+    }
+
+    @Override
+    public List<AssetMovementView> findAllByStatus(StatusEnum status) {
+        return assetMovementRepository.findAllByStatus(status);
     }
 
     @Override
