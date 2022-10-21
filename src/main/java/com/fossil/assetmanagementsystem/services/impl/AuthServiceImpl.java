@@ -15,11 +15,11 @@ import org.springframework.stereotype.Service;
 public class AuthServiceImpl implements AuthService {
     private final UserRepository userRepo;
     @Override
-    public LoginResponseDto login(String fullName, String password) {
-        if(StringUtils.isBlank(fullName) || StringUtils.isBlank(password)){
+    public LoginResponseDto login(String userName, String password) {
+        if(StringUtils.isBlank(userName) || StringUtils.isBlank(password)){
             throw new UnexpectedErrorException("Username or password is empty","username or password is empty");
         }
-        User user = userRepo.findByFirstName(fullName);
+        User user = userRepo.findByUserName(userName);
         if(user == null){
             throw new InvalidLoginException("Invalid username or password","Invalid username or password");
         }

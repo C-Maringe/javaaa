@@ -39,7 +39,7 @@ public class UserServiceImpl implements UserService {
         //check if location exists
         final var foundLocation = locationRepository.findById(userDto.getLocationId());
                 if (foundLocation == null) {
-                    throw new EntityNotFoundException("Location not found");
+                    throw new EntityNotFoundException("user not found");
                 }
 
 

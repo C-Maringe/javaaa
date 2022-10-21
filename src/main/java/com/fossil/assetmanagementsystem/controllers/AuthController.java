@@ -28,16 +28,6 @@ public class AuthController {
     private final ResponseBuild<UserDto> userResponseBuild;
 
 
-    @PostMapping("/login")
-    public ResponseEntity<LoginResponseDto> authenticateUser(@RequestBody LoginTo loginTo) {
-        return ResponseEntity.ok(authService.login(loginTo.getFullName(), loginTo.getPassword()));
-    }
-    @PostMapping("/register")
-    public ResponseEntity<Response> register(@RequestBody UserDto userDto){
-        return new ResponseEntity<>(userResponseBuild.responseFunction
-                .apply(userService.save(userDto)), HttpStatus.OK);
-
-    }
 
 
 }
