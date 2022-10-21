@@ -3,6 +3,7 @@ package com.fossil.assetmanagementsystem.projections;
 import java.time.Instant;
 
 public interface UserView {
+
     Integer getId();
 
     String getUserName();

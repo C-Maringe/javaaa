@@ -20,6 +20,6 @@ public interface AssetView {
     Integer getUserId();
     LocalDate getDateOfPurchase();
     String getCreatedBy();
-    Instant getCreatedDate();
-    Instant getUpdatedDate();
+    Instant getCreatedAt();
+    Instant getUpdatedAt();
 }

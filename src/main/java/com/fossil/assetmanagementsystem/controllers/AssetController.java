@@ -1,26 +1,23 @@
 package com.fossil.assetmanagementsystem.controllers;
 
 import com.fossil.assetmanagementsystem.dtos.AssetDto;
-import com.fossil.assetmanagementsystem.entities.Asset;
 import com.fossil.assetmanagementsystem.projections.AssetView;
 import com.fossil.assetmanagementsystem.services.AssetService;
 import com.fossil.assetmanagementsystem.util.Response;
 import com.fossil.assetmanagementsystem.util.ResponseBuild;
 import com.sun.istack.NotNull;
 import lombok.RequiredArgsConstructor;
-import org.springframework.beans.BeanUtils;
 import org.springframework.format.annotation.DateTimeFormat;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
 
-import java.text.DateFormat;
 import java.time.LocalDate;
-import java.time.LocalDateTime;
 
 
 @RequiredArgsConstructor
 @RestController
+@CrossOrigin
 @RequestMapping("/api/v1/asset")
 public class AssetController {
     private final AssetService assetService;

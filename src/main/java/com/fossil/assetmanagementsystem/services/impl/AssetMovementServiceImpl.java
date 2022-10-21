@@ -2,7 +2,6 @@ package com.fossil.assetmanagementsystem.services.impl;
 
 
 import com.fossil.assetmanagementsystem.dtos.AssetMovementDto;
-
 import com.fossil.assetmanagementsystem.entities.AssetMovement;
 import com.fossil.assetmanagementsystem.enums.StatusEnum;
 import com.fossil.assetmanagementsystem.exceptions.InvalidParameterException;
@@ -12,7 +11,6 @@ import com.fossil.assetmanagementsystem.repositories.AssetRepository;
 import com.fossil.assetmanagementsystem.repositories.LocationRepository;
 import com.fossil.assetmanagementsystem.repositories.UserRepository;
 import com.fossil.assetmanagementsystem.services.AssetMovementService;
-import com.sun.istack.NotNull;
 import lombok.RequiredArgsConstructor;
 import lombok.extern.slf4j.Slf4j;
 import org.springframework.beans.BeanUtils;

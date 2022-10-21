@@ -1,8 +1,6 @@
 package com.fossil.assetmanagementsystem.services.impl;
 
-import com.fossil.assetmanagementsystem.dtos.AssetDto;
 import com.fossil.assetmanagementsystem.dtos.LocationDto;
-import com.fossil.assetmanagementsystem.entities.Asset;
 import com.fossil.assetmanagementsystem.entities.Location;
 import com.fossil.assetmanagementsystem.exceptions.InvalidParameterException;
 import com.fossil.assetmanagementsystem.projections.LocationView;

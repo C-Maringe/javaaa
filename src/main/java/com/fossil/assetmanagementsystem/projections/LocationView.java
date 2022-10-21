@@ -6,7 +6,7 @@ public interface LocationView {
     Integer getId();
     String getLocationName();
     String getCreatedBy();
-    Instant getCreatedDate();
-    Instant getUpdatedDate();
+    Instant getCreatedAt();
+    Instant getUpdatedAt();
 
 }

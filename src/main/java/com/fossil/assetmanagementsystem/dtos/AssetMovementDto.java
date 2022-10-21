@@ -3,8 +3,6 @@ package com.fossil.assetmanagementsystem.dtos;
 import com.fossil.assetmanagementsystem.enums.StatusEnum;
 import lombok.Data;
 
-import javax.persistence.criteria.CriteriaBuilder;
-
 @Data
 public class AssetMovementDto {
     private Integer id;

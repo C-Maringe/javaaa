@@ -3,7 +3,6 @@ package com.fossil.assetmanagementsystem.controllers;
 import com.fossil.assetmanagementsystem.dtos.AssetMovementDto;
 import com.fossil.assetmanagementsystem.enums.StatusEnum;
 import com.fossil.assetmanagementsystem.projections.AssetMovementView;
-import com.fossil.assetmanagementsystem.projections.AssetView;
 import com.fossil.assetmanagementsystem.services.AssetMovementService;
 import com.fossil.assetmanagementsystem.util.Response;
 import com.fossil.assetmanagementsystem.util.ResponseBuild;
@@ -14,6 +13,7 @@ import org.springframework.web.bind.annotation.*;
 
 @RequiredArgsConstructor
 @RestController
+@CrossOrigin
 @RequestMapping("/api/v1/assetmovement")
 public class AssetMovementController {
 
