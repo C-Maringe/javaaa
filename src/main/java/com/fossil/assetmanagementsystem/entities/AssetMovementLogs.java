@@ -1,5 +1,6 @@
 package com.fossil.assetmanagementsystem.entities;
 
+
 import com.fasterxml.jackson.annotation.JsonFormat;
 import com.fossil.assetmanagementsystem.enums.StatusEnum;
 import lombok.Getter;
@@ -11,45 +12,43 @@ import java.io.Serializable;
 import java.time.LocalDate;
 
 @RequiredArgsConstructor
-@Getter
 @Setter
+@Getter
 @Entity
-@Table(name = "asset_movement")
-public class AssetMovement extends BaseEntity implements Serializable {
-    private static final long serialVersionUID = -3431441698184406613L;
-    @Column(name = "asset_id",nullable = false)
+@Table(name= "asset_movement_logs")
+public class AssetMovementLogs extends BaseEntity implements Serializable {
+    private static final long serialVersionUID = 9092154693445912972L;
+
+    @Column(name = "asset_id")
     private Integer assetId;
 
-    @Column(name = "user_id",nullable = false)
+    @Column(name = "user_id")
     private Integer userId;
 
-    @Column(name = "location_id",nullable = false)
+    @Column(name = "location_id")
     private Integer locationId;
 
     @Enumerated(EnumType.STRING)
-    @Column(name = "status",nullable = false)
+    @Column(name = "status")
     private StatusEnum status;
 
-    @Column(name = "value",nullable = false)
+    @Column(name = "value")
     private Double value;
 
-    @Column(name = "depreciation_value",nullable = false)
+    @Column(name = "depreciation_value")
     private Double depreciationValue;
 
-    @Column(name="notes",nullable = false)
+    @Column(name="notes")
     private String notes;
 
-    @Column(name="source",nullable = false)
+    @Column(name="source")
     private String source;
 
-    @Column(name="destination",nullable = false)
+    @Column(name="destination")
     private String destination;
 
 
     @JsonFormat(shape = JsonFormat.Shape.STRING, pattern = "yyyy-MM-dd")
-    @Column(name = "date_of_movement",nullable = false)
+    @Column(name = "date_of_movement")
     private LocalDate dateOfMovement;
-
-
-
 }

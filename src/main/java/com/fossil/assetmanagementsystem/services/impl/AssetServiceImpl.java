@@ -3,10 +3,14 @@ package com.fossil.assetmanagementsystem.services.impl;
 
 import com.fossil.assetmanagementsystem.dtos.AssetDto;
 import com.fossil.assetmanagementsystem.entities.Asset;
+import com.fossil.assetmanagementsystem.entities.AssetMovementLogs;
 import com.fossil.assetmanagementsystem.exceptions.InvalidParameterException;
 import com.fossil.assetmanagementsystem.projections.AssetView;
+import com.fossil.assetmanagementsystem.repositories.AssetMovementLogRepository;
+import com.fossil.assetmanagementsystem.repositories.AssetMovementRepository;
 import com.fossil.assetmanagementsystem.repositories.AssetRepository;
 import com.fossil.assetmanagementsystem.repositories.LocationRepository;
+import com.fossil.assetmanagementsystem.services.AssetMovementLogService;
 import com.fossil.assetmanagementsystem.services.AssetService;
 import lombok.RequiredArgsConstructor;
 import lombok.extern.slf4j.Slf4j;
@@ -18,6 +22,8 @@ import java.time.LocalDate;
 import java.util.List;
 import java.util.Objects;
 
+import static com.fossil.assetmanagementsystem.enums.StatusEnum.NEW_ASSET;
+
 @Service
 @Slf4j
 @RequiredArgsConstructor
@@ -26,6 +32,8 @@ public class AssetServiceImpl implements AssetService {
     private final AssetRepository assetRepository;
 
     private final LocationRepository locationRepository;
+
+    private final AssetMovementLogRepository assetMovementLogRepository;
 
     @Override
     public List<AssetView> findAllAssets() {
@@ -48,6 +56,7 @@ public class AssetServiceImpl implements AssetService {
     @Override
     public AssetDto save(AssetDto assetDto) {
 
+
         //check if location exists
         final var foundLocation = locationRepository.findById(assetDto.getLocationId());
         if (foundLocation == null) {
@@ -55,7 +64,26 @@ public class AssetServiceImpl implements AssetService {
         }
         final var asset = buildAsset(assetDto);
         final var savedAsset = assetRepository.save(asset);
+
+        //Save record in asset_movement_logs
+        AssetMovementLogs assetMovementLogs=new AssetMovementLogs();
+        assetMovementLogs.setId(assetDto.getId());
+        assetMovementLogs.setStatus(NEW_ASSET);
+        assetMovementLogs.setDepreciationValue(assetDto.getDepreciationValue());
+        assetMovementLogs.setCreatedAt(assetDto.getCreatedAt());
+        assetMovementLogs.setCreatedBy(assetDto.getCreatedBy());
+        assetMovementLogs.setLocationId(assetDto.getLocationId());
+        assetMovementLogs.setUserId(assetDto.getUserId());
+        assetMovementLogs.setValue(assetDto.getValue());
+        assetMovementLogs.setAssetId(null);
+        assetMovementLogs.setDateOfMovement(null);
+        assetMovementLogs.setDestination(null);
+        assetMovementLogs.setSource(null);
+        assetMovementLogs.setNotes(null);
+        assetMovementLogRepository.save(assetMovementLogs);
         return buildAssetDto(savedAsset);
+
+
     }
 
     @Override

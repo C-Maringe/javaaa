@@ -18,7 +18,7 @@ public interface AssetMovementRepository extends JpaRepository<AssetMovement, In
     @Query("SELECT am.id as id,am.createdAt as createdAt,am.createdBy as createdBy," +
             "am.updatedAt as updatedAt,am.assetId as assetId,am.locationId as locationId," +
             "am.notes as notes,am.status as status,am.userId as userId," +
-            "am.value as value,am.source as source,am.destination as destination,am.dateOfMovement as dateOfMovement," +
+            "value as value,am.source as source,am.destination as destination,am.dateOfMovement as dateOfMovement," +
             "am.depreciationValue as depreciationValue FROM AssetMovement am")
     List<AssetMovementView> findAllAssetMovements();
 
