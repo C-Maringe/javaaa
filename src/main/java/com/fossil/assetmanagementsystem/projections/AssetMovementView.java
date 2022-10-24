@@ -1,5 +1,6 @@
 package com.fossil.assetmanagementsystem.projections;
 
+import com.fossil.assetmanagementsystem.entities.Location;
 import com.fossil.assetmanagementsystem.enums.StatusEnum;
 
 import java.time.Instant;
