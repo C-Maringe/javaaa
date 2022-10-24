@@ -17,6 +17,7 @@ import org.springframework.beans.BeanUtils;
 import org.springframework.stereotype.Service;
 
 import javax.persistence.EntityNotFoundException;
+import java.time.LocalDate;
 import java.util.List;
 import java.util.Objects;
 
@@ -42,6 +43,12 @@ public class AssetMovementServiceImpl implements AssetMovementService {
     public List<AssetMovementView> findAllByStatus(StatusEnum status) {
         return assetMovementRepository.findAllByStatus(status);
     }
+
+    @Override
+    public List<AssetMovementView> findAllByDateOfMovement(LocalDate dateOfMovement) {
+        return assetMovementRepository.findAllByDateOfMovement(dateOfMovement);
+    }
+
 
     @Override
     public AssetMovementDto findById(Integer id) {

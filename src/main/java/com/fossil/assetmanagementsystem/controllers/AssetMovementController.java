@@ -6,10 +6,14 @@ import com.fossil.assetmanagementsystem.projections.AssetMovementView;
 import com.fossil.assetmanagementsystem.services.AssetMovementService;
 import com.fossil.assetmanagementsystem.util.Response;
 import com.fossil.assetmanagementsystem.util.ResponseBuild;
+import com.sun.istack.NotNull;
 import lombok.RequiredArgsConstructor;
+import org.springframework.format.annotation.DateTimeFormat;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
+
+import java.time.LocalDate;
 
 @RequiredArgsConstructor
 @RestController
@@ -54,6 +58,11 @@ public class AssetMovementController {
     public ResponseEntity<Response> findByAsset(@PathVariable("status") StatusEnum status){
         return new ResponseEntity<>(assetMovementViewResponseBuild.listResponseFunction.
                 apply(assetMovementService.findAllByStatus(status)), HttpStatus.OK);
+    }
+    @GetMapping("/find-by-dateofmovement/{dateOfMovement}")
+    public ResponseEntity<Response> findByDateOfMovement(@NotNull @DateTimeFormat(pattern = "yyyy-MM-dd") @PathVariable("dateOfMovement") LocalDate dateOfMovement){
+        return new ResponseEntity<>(assetMovementViewResponseBuild.listResponseFunction.
+                apply(assetMovementService.findAllByDateOfMovement(dateOfMovement)), HttpStatus.OK);
     }
 
 }

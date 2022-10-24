@@ -5,6 +5,7 @@ import com.fossil.assetmanagementsystem.enums.StatusEnum;
 import com.fossil.assetmanagementsystem.projections.AssetMovementView;
 import org.springframework.stereotype.Service;
 
+import java.time.LocalDate;
 import java.util.List;
 
 @Service
@@ -13,4 +14,6 @@ public interface AssetMovementService extends BaseService<AssetMovementDto,Asset
     List<AssetMovementView> findAllAssetMovements();
 
     List<AssetMovementView> findAllByStatus(StatusEnum status);
+
+    List<AssetMovementView> findAllByDateOfMovement(LocalDate dateOfMovement);
 }

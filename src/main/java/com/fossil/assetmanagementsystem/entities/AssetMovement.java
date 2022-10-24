@@ -1,5 +1,6 @@
 package com.fossil.assetmanagementsystem.entities;
 
+import com.fasterxml.jackson.annotation.JsonFormat;
 import com.fasterxml.jackson.databind.ser.Serializers;
 import com.fossil.assetmanagementsystem.enums.StatusEnum;
 import lombok.Getter;
@@ -8,6 +9,7 @@ import lombok.Setter;
 
 import javax.persistence.*;
 import java.io.Serializable;
+import java.time.LocalDate;
 
 @RequiredArgsConstructor
 @Getter
@@ -32,8 +34,22 @@ public class AssetMovement extends BaseEntity implements Serializable {
     @Column(name = "value",nullable = false)
     private Double value;
 
+    @Column(name = "depreciation_value",nullable = false)
+    private Double depreciationValue;
+
     @Column(name="notes",nullable = false)
     private String notes;
+
+    @Column(name="source",nullable = false)
+    private String source;
+
+    @Column(name="destination",nullable = false)
+    private String destination;
+
+
+    @JsonFormat(shape = JsonFormat.Shape.STRING, pattern = "yyyy-MM-dd")
+    @Column(name = "date_of_movement",nullable = false)
+    private LocalDate dateOfMovement;
 
 
 

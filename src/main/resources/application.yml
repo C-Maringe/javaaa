@@ -1,3 +1,9 @@
 spring:
   profiles:
     active: dev
+
+  application:
+    name: ams
+server:
+  servlet:
+    context-path: /ams

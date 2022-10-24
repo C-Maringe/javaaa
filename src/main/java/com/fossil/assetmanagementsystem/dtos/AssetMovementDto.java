@@ -3,6 +3,8 @@ package com.fossil.assetmanagementsystem.dtos;
 import com.fossil.assetmanagementsystem.enums.StatusEnum;
 import lombok.Data;
 
+import java.time.LocalDate;
+
 @Data
 public class AssetMovementDto {
     private Integer id;
@@ -12,6 +14,10 @@ public class AssetMovementDto {
     private Integer locationId;
     private StatusEnum status;
     private Double value;
+    private Double depreciationValue;
+    private String source;
+    private String destination;
+    private LocalDate dateOfMovement;
     private String notes;
 
 
