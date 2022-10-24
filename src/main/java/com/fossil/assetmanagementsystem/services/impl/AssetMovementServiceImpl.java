@@ -3,13 +3,12 @@ package com.fossil.assetmanagementsystem.services.impl;
 
 import com.fossil.assetmanagementsystem.dtos.AssetMovementDto;
 import com.fossil.assetmanagementsystem.entities.AssetMovement;
+import com.fossil.assetmanagementsystem.entities.AssetMovementLogs;
 import com.fossil.assetmanagementsystem.enums.StatusEnum;
 import com.fossil.assetmanagementsystem.exceptions.InvalidParameterException;
 import com.fossil.assetmanagementsystem.projections.AssetMovementView;
-import com.fossil.assetmanagementsystem.repositories.AssetMovementRepository;
-import com.fossil.assetmanagementsystem.repositories.AssetRepository;
-import com.fossil.assetmanagementsystem.repositories.LocationRepository;
-import com.fossil.assetmanagementsystem.repositories.UserRepository;
+import com.fossil.assetmanagementsystem.repositories.*;
+import com.fossil.assetmanagementsystem.services.AssetMovementLogService;
 import com.fossil.assetmanagementsystem.services.AssetMovementService;
 import lombok.RequiredArgsConstructor;
 import lombok.extern.slf4j.Slf4j;
@@ -24,9 +23,11 @@ import java.util.Objects;
 @Service
 @Slf4j
 @RequiredArgsConstructor
-public class AssetMovementServiceImpl implements AssetMovementService {
+public class AssetMovementServiceImpl implements AssetMovementService, AssetMovementLogService {
 
     private final AssetMovementRepository assetMovementRepository;
+
+    private final AssetMovementLogRepository assetMovementLogRepository;
 
     private final AssetRepository assetRepository;
 
@@ -74,8 +75,27 @@ public class AssetMovementServiceImpl implements AssetMovementService {
         if (foundUser == null) {
             throw new EntityNotFoundException("User not found");
         }
+
+
         final var assetMovement = buildAssetMovement(assetMovementDto);
         final var savedAssetMovement = assetMovementRepository.save(assetMovement);
+
+        //log trail for asset movement
+        AssetMovementLogs assetMovementLogs=new AssetMovementLogs();
+        assetMovementLogs.setId(assetMovementDto.getId());
+        assetMovementLogs.setCreatedBy(assetMovementDto.getCreatedBy());
+        assetMovementLogs.setAssetId(assetMovementDto.getAssetId());
+        assetMovementLogs.setUserId(assetMovementDto.getUserId());
+        assetMovementLogs.setLocationId(assetMovementDto.getLocationId());
+        assetMovementLogs.setStatus(assetMovementDto.getStatus());
+        assetMovementLogs.setValue(assetMovementDto.getValue());
+        assetMovementLogs.setDepreciationValue(assetMovementDto.getDepreciationValue());
+        assetMovementLogs.setSource(assetMovementDto.getSource());
+        assetMovementLogs.setDestination(assetMovementDto.getDestination());
+        assetMovementLogs.setDateOfMovement(assetMovementDto.getDateOfMovement());
+        assetMovementLogs.setNotes(assetMovementDto.getNotes());
+        assetMovementLogRepository.save(assetMovementLogs);
+
         return buildAssetMovementDto(savedAssetMovement);
     }
 
@@ -89,15 +109,53 @@ public class AssetMovementServiceImpl implements AssetMovementService {
         }
         final var assetMovement = buildAssetMovement(assetMovementDto);
         final var savedAssetMovement = assetMovementRepository.save(assetMovement);
+
+        //Save record in asset_movement_logs
+
+        AssetMovementLogs assetMovementLogs=new AssetMovementLogs();
+        assetMovementLogs.setId(assetMovementDto.getId());
+        assetMovementLogs.setCreatedBy(assetMovementDto.getCreatedBy());
+        assetMovementLogs.setAssetId(assetMovementDto.getAssetId());
+        assetMovementLogs.setUserId(assetMovementDto.getUserId());
+        assetMovementLogs.setLocationId(assetMovementDto.getLocationId());
+        assetMovementLogs.setStatus(assetMovementDto.getStatus());
+        assetMovementLogs.setValue(assetMovementDto.getValue());
+        assetMovementLogs.setDepreciationValue(assetMovementDto.getDepreciationValue());
+        assetMovementLogs.setSource(assetMovementDto.getSource());
+        assetMovementLogs.setDestination(assetMovementDto.getDestination());
+        assetMovementLogs.setDateOfMovement(assetMovementDto.getDateOfMovement());
+        assetMovementLogs.setNotes(assetMovementDto.getNotes());
+        assetMovementLogRepository.save(assetMovementLogs);
+
         return buildAssetMovementDto(savedAssetMovement);
 
     }
 
     @Override
     public Boolean deleteById(Integer id) {
+
         if(!assetMovementRepository.existsById(id)){
             throw new EntityNotFoundException("AssetMovement with provided id not found");
         }
+
+        //Log trail for delete
+        AssetMovementDto assetMovementDto=new AssetMovementDto();
+        AssetMovement assetMovement=new AssetMovement();
+        AssetMovementLogs assetMovementLogs=new AssetMovementLogs();
+        assetMovementLogs.setId(assetMovement.getId());
+        assetMovementLogs.setCreatedBy(assetMovement.getCreatedBy());
+        assetMovementLogs.setAssetId(assetMovementDto.getAssetId());
+        assetMovementLogs.setUserId(assetMovementDto.getUserId());
+        assetMovementLogs.setLocationId(assetMovementDto.getLocationId());
+        assetMovementLogs.setStatus(StatusEnum.ASSET_DISPOSED);
+        assetMovementLogs.setValue(assetMovementDto.getValue());
+        assetMovementLogs.setDepreciationValue(assetMovementDto.getDepreciationValue());
+        assetMovementLogs.setSource(assetMovementDto.getSource());
+        assetMovementLogs.setDestination(assetMovementDto.getDestination());
+        assetMovementLogs.setDateOfMovement(assetMovementDto.getDateOfMovement());
+        assetMovementLogs.setNotes(assetMovementDto.getNotes());
+        assetMovementLogRepository.save(assetMovementLogs);
+        //Save record in asset_movement_logs
         assetMovementRepository.deleteById(id);
         return true;
     }

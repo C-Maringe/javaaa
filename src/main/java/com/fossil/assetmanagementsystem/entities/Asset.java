@@ -2,6 +2,7 @@ package com.fossil.assetmanagementsystem.entities;
 
 import com.fasterxml.jackson.annotation.JsonFormat;
 import com.fossil.assetmanagementsystem.enums.DepreciationEnum;
+import com.fossil.assetmanagementsystem.enums.StatusEnum;
 import lombok.Getter;
 import lombok.RequiredArgsConstructor;
 import lombok.Setter;
@@ -43,6 +44,9 @@ public class Asset extends BaseEntity implements Serializable {
     @Column(name = "depreciation_rate",nullable = false)
     private Double depreciationRate;
 
+    @Column(name="depreciation_value",nullable = false)
+    private Double depreciationValue;
+
     @Column(name = "location_id",nullable = false)
     private Integer locationId;
 
@@ -51,6 +55,11 @@ public class Asset extends BaseEntity implements Serializable {
 
     @Column(name = "user_id",nullable = false)
     private Integer userId;
+
+    @Column(name="status",nullable = false)
+    private StatusEnum status;
+
+
 
     @JsonFormat(shape = JsonFormat.Shape.STRING, pattern = "yyyy-MM-dd")
     @Column(name = "date_of_purchase",nullable = false)
