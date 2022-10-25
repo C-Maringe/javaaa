@@ -15,8 +15,8 @@ public class AssetMovementDto {
     private StatusEnum status;
     private Double value;
     private Double depreciationValue;
-    private String source;
-    private String destination;
+    private Integer sourceId;
+    private Integer destinationId;
     private LocalDate dateOfMovement;
     private String notes;
 

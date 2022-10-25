@@ -41,11 +41,11 @@ public class AssetMovementLogs extends BaseEntity implements Serializable {
     @Column(name="notes")
     private String notes;
 
-    @Column(name="source")
-    private String source;
+    @Column(name="source_id")
+    private Integer sourceId;
 
-    @Column(name="destination")
-    private String destination;
+    @Column(name="destination_id")
+    private Integer destinationId;
 
 
     @JsonFormat(shape = JsonFormat.Shape.STRING, pattern = "yyyy-MM-dd")

@@ -39,11 +39,11 @@ public class AssetMovement extends BaseEntity implements Serializable {
     @Column(name="notes",nullable = false)
     private String notes;
 
-    @Column(name="source",nullable = false)
-    private String source;
+    @Column(name="source_id",nullable = false)
+    private Integer sourceId;
 
-    @Column(name="destination",nullable = false)
-    private String destination;
+    @Column(name="destination_id",nullable = false)
+    private Integer destinationId;
 
 
     @JsonFormat(shape = JsonFormat.Shape.STRING, pattern = "yyyy-MM-dd")

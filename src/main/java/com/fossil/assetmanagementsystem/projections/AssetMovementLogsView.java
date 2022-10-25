@@ -1,28 +1,22 @@
 package com.fossil.assetmanagementsystem.projections;
 
-import com.fossil.assetmanagementsystem.entities.Location;
-import com.fossil.assetmanagementsystem.enums.StatusEnum;
-
-import java.time.Instant;
 import java.time.LocalDate;
 
-public interface AssetMovementView {
+public interface AssetMovementLogsView {
     Integer getId();
+    String getCreatedBy();
     Integer getAssetId();
     Integer getUserId();
     Integer getLocationId();
-    StatusEnum getStatus();
+    String getAssetName();
+    String getUserName();
+    String getLocationName();
+    String getStatus();
     Double getValue();
     Double getDepreciationValue();
     Integer getSourceId();
     Integer getDestinationId();
     LocalDate getDateOfMovement();
     String getNotes();
-    String getCreatedBy();
-    Instant getCreatedAt();
-    Instant getUpdatedAt();
-
-
-
-
 }
+

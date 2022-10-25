@@ -77,8 +77,8 @@ public class AssetServiceImpl implements AssetService {
         assetMovementLogs.setValue(assetDto.getValue());
         assetMovementLogs.setAssetId(null);
         assetMovementLogs.setDateOfMovement(null);
-        assetMovementLogs.setDestination(null);
-        assetMovementLogs.setSource(null);
+        assetMovementLogs.setDestinationId(null);
+        assetMovementLogs.setSourceId(null);
         assetMovementLogs.setNotes(null);
         assetMovementLogRepository.save(assetMovementLogs);
         return buildAssetDto(savedAsset);

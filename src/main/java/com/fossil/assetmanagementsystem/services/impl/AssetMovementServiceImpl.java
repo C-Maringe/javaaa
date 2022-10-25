@@ -6,6 +6,7 @@ import com.fossil.assetmanagementsystem.entities.AssetMovement;
 import com.fossil.assetmanagementsystem.entities.AssetMovementLogs;
 import com.fossil.assetmanagementsystem.enums.StatusEnum;
 import com.fossil.assetmanagementsystem.exceptions.InvalidParameterException;
+import com.fossil.assetmanagementsystem.projections.AssetMovementLogsView;
 import com.fossil.assetmanagementsystem.projections.AssetMovementView;
 import com.fossil.assetmanagementsystem.repositories.*;
 import com.fossil.assetmanagementsystem.services.AssetMovementLogService;
@@ -40,6 +41,10 @@ public class AssetMovementServiceImpl implements AssetMovementService, AssetMove
       return  assetMovementRepository.findAllAssetMovements();
     }
 
+    @Override
+    public List<AssetMovementLogsView> findAllAssetMovementsLogs() {
+        return assetMovementLogRepository.findAssetMovementLogs();
+    }
     @Override
     public List<AssetMovementView> findAllByStatus(StatusEnum status) {
         return assetMovementRepository.findAllByStatus(status);
@@ -90,8 +95,8 @@ public class AssetMovementServiceImpl implements AssetMovementService, AssetMove
         assetMovementLogs.setStatus(assetMovementDto.getStatus());
         assetMovementLogs.setValue(assetMovementDto.getValue());
         assetMovementLogs.setDepreciationValue(assetMovementDto.getDepreciationValue());
-        assetMovementLogs.setSource(assetMovementDto.getSource());
-        assetMovementLogs.setDestination(assetMovementDto.getDestination());
+        assetMovementLogs.setSourceId(assetMovementDto.getSourceId());
+        assetMovementLogs.setDestinationId(assetMovementDto.getDestinationId());
         assetMovementLogs.setDateOfMovement(assetMovementDto.getDateOfMovement());
         assetMovementLogs.setNotes(assetMovementDto.getNotes());
         assetMovementLogRepository.save(assetMovementLogs);
@@ -121,8 +126,8 @@ public class AssetMovementServiceImpl implements AssetMovementService, AssetMove
         assetMovementLogs.setStatus(assetMovementDto.getStatus());
         assetMovementLogs.setValue(assetMovementDto.getValue());
         assetMovementLogs.setDepreciationValue(assetMovementDto.getDepreciationValue());
-        assetMovementLogs.setSource(assetMovementDto.getSource());
-        assetMovementLogs.setDestination(assetMovementDto.getDestination());
+        assetMovementLogs.setSourceId(assetMovementDto.getSourceId());
+        assetMovementLogs.setDestinationId(assetMovementDto.getDestinationId());
         assetMovementLogs.setDateOfMovement(assetMovementDto.getDateOfMovement());
         assetMovementLogs.setNotes(assetMovementDto.getNotes());
         assetMovementLogRepository.save(assetMovementLogs);
@@ -150,8 +155,8 @@ public class AssetMovementServiceImpl implements AssetMovementService, AssetMove
         assetMovementLogs.setStatus(StatusEnum.ASSET_DISPOSED);
         assetMovementLogs.setValue(assetMovementDto.getValue());
         assetMovementLogs.setDepreciationValue(assetMovementDto.getDepreciationValue());
-        assetMovementLogs.setSource(assetMovementDto.getSource());
-        assetMovementLogs.setDestination(assetMovementDto.getDestination());
+        assetMovementLogs.setSourceId(assetMovementDto.getSourceId());
+        assetMovementLogs.setDestinationId(assetMovementDto.getDestinationId());
         assetMovementLogs.setDateOfMovement(assetMovementDto.getDateOfMovement());
         assetMovementLogs.setNotes(assetMovementDto.getNotes());
         assetMovementLogRepository.save(assetMovementLogs);
@@ -169,5 +174,7 @@ public class AssetMovementServiceImpl implements AssetMovementService, AssetMove
         BeanUtils.copyProperties(assetMovement,assetMovementDto);
         return assetMovementDto;
     }
+
+
 }
 
