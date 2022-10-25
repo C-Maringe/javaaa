@@ -70,16 +70,15 @@ public class AssetServiceImpl implements AssetService {
         assetMovementLogs.setId(assetDto.getId());
         assetMovementLogs.setStatus(NEW_ASSET);
         assetMovementLogs.setDepreciationValue(assetDto.getDepreciationValue());
-        assetMovementLogs.setCreatedAt(assetDto.getCreatedAt());
         assetMovementLogs.setCreatedBy(assetDto.getCreatedBy());
         assetMovementLogs.setLocationId(assetDto.getLocationId());
         assetMovementLogs.setUserId(assetDto.getUserId());
         assetMovementLogs.setValue(assetDto.getValue());
         assetMovementLogs.setAssetId(null);
-        assetMovementLogs.setDateOfMovement(null);
-        assetMovementLogs.setDestinationId(null);
-        assetMovementLogs.setSourceId(null);
-        assetMovementLogs.setNotes(null);
+        assetMovementLogs.setDateOfMovement(LocalDate.now());
+        assetMovementLogs.setDestinationId(1);
+        assetMovementLogs.setSourceId(1);
+        assetMovementLogs.setNotes("NEW ASSET");
         assetMovementLogRepository.save(assetMovementLogs);
         return buildAssetDto(savedAsset);
 

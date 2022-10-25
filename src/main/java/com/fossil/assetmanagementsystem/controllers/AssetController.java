@@ -7,6 +7,7 @@ import com.fossil.assetmanagementsystem.util.Response;
 import com.fossil.assetmanagementsystem.util.ResponseBuild;
 import com.sun.istack.NotNull;
 import lombok.RequiredArgsConstructor;
+import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.format.annotation.DateTimeFormat;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
@@ -20,6 +21,8 @@ import java.time.LocalDate;
 @CrossOrigin
 @RequestMapping("/api/v1/asset")
 public class AssetController {
+
+    @Autowired
     private final AssetService assetService;
 
     private final ResponseBuild<AssetDto> assetDtoResponseBuild;
@@ -58,11 +61,4 @@ public class AssetController {
         return new ResponseEntity<>(assetViewResponseBuild.listResponseFunction.
                 apply(assetService.findByDateOfPurchase(dateOfPurchase)), HttpStatus.OK);
     }
-
-
-
-
-
-
-
 }

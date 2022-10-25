@@ -6,6 +6,7 @@ import com.fossil.assetmanagementsystem.services.AssetMovementLogService;
 import com.fossil.assetmanagementsystem.util.Response;
 import com.fossil.assetmanagementsystem.util.ResponseBuild;
 import lombok.RequiredArgsConstructor;
+import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.CrossOrigin;
@@ -18,6 +19,7 @@ import org.springframework.web.bind.annotation.RestController;
 @CrossOrigin
 @RequestMapping("/api/v1/assetmovementlogs")
 public class AssetMovementLogsController {
+    @Autowired
     private final AssetMovementLogService assetMovementLogService;
     private final ResponseBuild<AssetMovementLogsView> assetMovementLogsViewResponseBuild;
 
@@ -26,10 +28,4 @@ public class AssetMovementLogsController {
         return new ResponseEntity<>(assetMovementLogsViewResponseBuild.listResponseFunction.
                 apply(assetMovementLogService.findAllAssetMovementsLogs()), HttpStatus.OK);
     }
-
-
-
-
-
-
 }

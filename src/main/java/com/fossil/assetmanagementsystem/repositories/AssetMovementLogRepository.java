@@ -34,11 +34,29 @@ public interface AssetMovementLogRepository extends JpaRepository<AssetMovementL
     List<AssetMovementLogsView> findAssetMovementLogs();*/
 
 
-    @Query(value="SELECT aml.id as id,aml.createdAt as createdAt,aml.createdBy as createdBy,aml.updatedAt as updatedAt," +
-            "aml.assetId as assetId,aml.locationId as locationId,aml.notes as notes,aml.status as status,aml.userId as userId," +
-            "aml.value as value,aml.sourceId as sourceId,aml.destinationId as destinationId,aml.dateOfMovement as dateOfMovement," +
-            "aml.depreciationValue as depreciationValue FROM AssetMovementLogs aml")
+ @Query(value="select " +
+         "asset_movement_logs.user_id as userId," +
+         "       u.first_name as firstName," +
+         "       u.last_name as surname," +
+         "       asset_movement_logs.id as id," +
+         "       asset_movement_logs.date_of_movement as dateM," +
+         "       asset_movement_logs.status as status," +
+         "       asset_movement_logs.notes as notes," +
+         "       asset_movement_logs.value as value," +
+         "       a.asset_name as assetName," +
+         "       l.location_name as sourceLocation," +
+         "       ll.location_name as destinationLocation " +
+         "       from asset_movement_logs" +
+         "            left join user u on asset_movement_logs.user_id = u.id" +
+         "            left join asset a on asset_movement_logs.asset_id = a.id" +
+         "            left join location l on asset_movement_logs.source_id = l.id" +
+         "            left join location ll on asset_movement_logs.destination_id = ll.id", nativeQuery = true)
     List<AssetMovementLogsView> findAssetMovementLogs();
+
+
+
+
+
 
 
 

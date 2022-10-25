@@ -9,6 +9,7 @@ import com.fossil.assetmanagementsystem.services.UserService;
 import com.fossil.assetmanagementsystem.util.Response;
 import com.fossil.assetmanagementsystem.util.ResponseBuild;
 import lombok.RequiredArgsConstructor;
+import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
@@ -18,6 +19,8 @@ import org.springframework.web.bind.annotation.*;
 @CrossOrigin
 @RequestMapping("/api/v1/user")
 public class UserController {
+
+    @Autowired
     private final UserService userService;
 
     private final AuthService authService;

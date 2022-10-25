@@ -41,10 +41,10 @@ public class AssetMovementServiceImpl implements AssetMovementService, AssetMove
       return  assetMovementRepository.findAllAssetMovements();
     }
 
-    @Override
-    public List<AssetMovementLogsView> findAllAssetMovementsLogs() {
-        return assetMovementLogRepository.findAssetMovementLogs();
-    }
+//    @Override
+//    public List<AssetMovementLogsView> findAllAssetMovementsLogs() {
+//        return assetMovementLogRepository.findAssetMovementLogs();
+//    }
     @Override
     public List<AssetMovementView> findAllByStatus(StatusEnum status) {
         return assetMovementRepository.findAllByStatus(status);
@@ -176,5 +176,9 @@ public class AssetMovementServiceImpl implements AssetMovementService, AssetMove
     }
 
 
+    @Override
+    public List<AssetMovementLogsView> findAllAssetMovementsLogs() {
+        return assetMovementLogRepository.findAssetMovementLogs();
+    }
 }
 

@@ -6,6 +6,7 @@ import com.fossil.assetmanagementsystem.services.LocationService;
 import com.fossil.assetmanagementsystem.util.Response;
 import com.fossil.assetmanagementsystem.util.ResponseBuild;
 import lombok.RequiredArgsConstructor;
+import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
@@ -15,6 +16,7 @@ import org.springframework.web.bind.annotation.*;
 @CrossOrigin
 @RequestMapping("/api/v1/location")
 public class LocationController {
+    @Autowired
     private final LocationService locationService;
 
     private final ResponseBuild<LocationDto> locationDtoResponseBuild;

@@ -8,6 +8,7 @@ import com.fossil.assetmanagementsystem.util.Response;
 import com.fossil.assetmanagementsystem.util.ResponseBuild;
 import com.sun.istack.NotNull;
 import lombok.RequiredArgsConstructor;
+import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.format.annotation.DateTimeFormat;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
@@ -21,6 +22,8 @@ import java.time.LocalDate;
 @RequestMapping("/api/v1/assetmovement")
 public class AssetMovementController {
 
+
+    @Autowired
     private final AssetMovementService assetMovementService;
 
     private final ResponseBuild<AssetMovementDto> assetMovementDtoResponseBuild;

@@ -11,7 +11,6 @@ import java.time.LocalDate;
 public class AssetDto {
     private Integer id;
     private String createdBy;
-    private Instant createdAt;
     private String assetName;
     private String description;
     private Integer serialNumber;

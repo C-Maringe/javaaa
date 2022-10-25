@@ -17,7 +17,6 @@ import java.time.LocalDateTime;
 @Setter
 @Entity
 @Table(name = "asset")
-
 public class Asset extends BaseEntity implements Serializable {
     private static final long serialVersionUID = -3431441698184406613L;
 
