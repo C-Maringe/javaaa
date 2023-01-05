@@ -15,6 +15,4 @@ public class UserDto {
     private String jobTitle;
     private String department;
     private Integer locationId;
-
-
 }

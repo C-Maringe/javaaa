@@ -42,17 +42,12 @@ public class UserController {
         return new ResponseEntity<>(userDtoResponseBuild.responseFunction.
                 apply(userService.findById(id)), HttpStatus.OK);
     }
-    @PostMapping("/save")
-    public ResponseEntity<Response> createUser(@RequestBody UserDto userDto){
-        return new ResponseEntity<>(userDtoResponseBuild.responseFunction.
-                apply(userService.save(userDto)), HttpStatus.OK);
-    }
-    @PutMapping("/update/{id}")
+    @PutMapping("/{id}")
     public ResponseEntity<Response> updateUser(@PathVariable("id") Integer id,@RequestBody UserDto userDto){
         return new ResponseEntity<>(userDtoResponseBuild.responseFunction.
                 apply(userService.update(id,userDto)), HttpStatus.OK);
     }
-    @DeleteMapping("/delete/{id}")
+    @DeleteMapping("/{id}")
     public ResponseEntity<Response> deleteUser(@PathVariable("id") Integer id){
         return new ResponseEntity<>(userDeleteResponseBuild.responseFunction.
                 apply(userService.deleteById(id)), HttpStatus.OK);
@@ -65,8 +60,5 @@ public class UserController {
     public ResponseEntity<Response> register(@RequestBody UserDto userDto){
         return new ResponseEntity<>(userResponseBuild.responseFunction
                 .apply(userService.save(userDto)), HttpStatus.OK);
-
     }
-
-
 }
